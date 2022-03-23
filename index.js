@@ -3,12 +3,13 @@ const app = express();
 const mongoose = require('mongoose');
 require('dotenv/config');
 
+//use middleware
+const employeePostRoute = require('./routes/employee');
+app.use('/api/employee/', employeePostRoute);
+
 //routes
 app.get('/', (req, res) => {
   res.send('gello');
-});
-app.get('/posts', (req, res) => {
-  res.send('cdsz');
 });
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
