@@ -1,7 +1,7 @@
-// mongodb + srv://respapis:<password>@cluster0.kvovi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
+require('dotenv/config');
 
 //routes
 app.get('/', (req, res) => {
@@ -11,4 +11,7 @@ app.get('/posts', (req, res) => {
   res.send('cdsz');
 });
 
-app.listen(3000);
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
+  console.log('database connect');
+});
+app.listen(process.env.PORT);
